@@ -5,6 +5,7 @@ export type Itodo = {
     id: number;
     text: string;
     done: boolean;
+    limit: string;
 };
 
 let initialTodos: Itodo[] = [];

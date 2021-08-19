@@ -1,0 +1,19 @@
+.ant-picker-input {
+    flex-direction: column-reverse;
+}
+
+.ant-picker-input > input {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+.ant-picker-input > input,
+.ant-picker-suffix {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ant-picker-suffix svg {
+    width: 2.5em;
+    height: 2.5em;
+}

@@ -1,5 +1,4 @@
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
-import { DatePicker, Space } from "antd";
 
 import { Itodo } from "components/todo/TodoService";
 import React from "react";
