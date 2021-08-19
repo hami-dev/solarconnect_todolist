@@ -28,6 +28,10 @@ const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
                 {done && <CheckOutlined />}
             </CheckCircle>
             <Text done={done}>{todo.text}</Text>
+            <Text2 done={done}>
+                {todo.limit !== "" && (done ? "deadline : " : "⏰deadline : ")}
+                {todo.limit}
+            </Text2>
             <Remove onClick={handleRemove}>
                 <DeleteOutlined />
             </Remove>
@@ -75,9 +79,23 @@ const CheckCircle = styled.div<{ done: boolean }>`
 `;
 
 const Text = styled.div<{ done: boolean }>`
-    flex: 1;
+    flex: 2;
     font-size: 16px;
     color: #119955;
+    ${(props) =>
+        props.done &&
+        css`
+            color: #ced4da;
+            text-decoration: line-through;
+        `}
+`;
+
+const Text2 = styled(Text)<{ done: boolean }>`
+    flex: 1;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 1rem;
+    color: #a1c0b1;
     ${(props) =>
         props.done &&
         css`
