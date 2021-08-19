@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TodoItem from "./template/list/item/TodoItem";
 
 export type Itodo = {
     id: number;
@@ -26,8 +27,15 @@ export const useTodo = () => {
 
     const toggleTodo = (id: number) => {
         //@TODO
+
+        setTodoState((prevState) =>
+            prevState.map((todo: Itodo) =>
+                todo.id === id ? { ...todo, done: !todo.done } : todo
+            )
+        );
     };
 
+    //지금 선택한 아이디 넘버와 같은 걸 걸러내고 재출력(==삭제)
     const removeTodo = (id: number) => {
         setTodoState((prevState) =>
             prevState.filter((todo: Itodo) => todo.id === id)
