@@ -1,4 +1,6 @@
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DatePicker, Space } from "antd";
+
 import { Itodo } from "components/todo/TodoService";
 import React from "react";
 import styled, { css } from "styled-components";
@@ -18,6 +20,7 @@ const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
 
     const handleRemove = () => {
         //todo sth
+        removeTodo(todo.id);
     };
 
     return (
