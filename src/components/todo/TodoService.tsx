@@ -27,7 +27,6 @@ export const useTodo = () => {
 
     const toggleTodo = (id: number) => {
         //@TODO
-
         setTodoState((prevState) =>
             prevState.map((todo: Itodo) =>
                 todo.id === id ? { ...todo, done: !todo.done } : todo
@@ -38,16 +37,25 @@ export const useTodo = () => {
     //지금 선택한 아이디 넘버와 같은 걸 걸러내고 재출력(==삭제)
     const removeTodo = (id: number) => {
         setTodoState((prevState) =>
-            prevState.filter((todo: Itodo) => todo.id === id)
+            prevState.filter((todo: Itodo) => todo.id !== id)
         );
     };
 
+    const getBiggestId = () => {
+        let id = 0;
+        for (let i = 0; i < todoState.length; i++) {
+            id = Math.max(id, todoState[i].id);
+        }
+        return id;
+    };
+
     const createTodo = (todo: Itodo) => {
-        const nextId = todoState.length + 1;
+        // const nextId = todoState.length + 1;
+        const nextId = getBiggestId();
         setTodoState((prevState) =>
             prevState.concat({
                 ...todo,
-                id: nextId,
+                id: nextId + 1,
             })
         );
     };
