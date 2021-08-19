@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import TodoItem from "./template/list/item/TodoItem";
 
 export type Itodo = {
     id: number;
@@ -15,6 +14,7 @@ export const useTodo = () => {
     let nextIdState = 0;
 
     useEffect(() => {
+        saveData();
         loadData();
     }, []);
 
