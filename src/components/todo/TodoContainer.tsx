@@ -14,6 +14,7 @@ const TodoContainer = () => {
         removeTodo,
         createTodo,
         updateTodo,
+        updateDate,
     } = useTodo();
 
     return (
@@ -29,6 +30,7 @@ const TodoContainer = () => {
                     toggleTodo={toggleTodo}
                     removeTodo={removeTodo}
                     updateTodo={updateTodo}
+                    updateDate={updateDate}
                     todos={todoState}
                 />
                 <TodoFooter todos={todoState} />

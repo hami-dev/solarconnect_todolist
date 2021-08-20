@@ -49,6 +49,14 @@ export const useTodo = () => {
         );
     };
 
+    const updateDate = (id: number, newDate: string) => {
+        setTodoState((prevState) =>
+            prevState.map((todo: Itodo) =>
+                todo.id === id ? { ...todo, limit: newDate } : todo
+            )
+        );
+    };
+
     const getBiggestId = () => {
         let id = 0;
         for (let i = 0; i < todoState.length; i++) {
@@ -89,6 +97,7 @@ export const useTodo = () => {
         toggleTodo,
         removeTodo,
         updateTodo,
+        updateDate,
         createTodo,
     };
 };

@@ -8,12 +8,14 @@ interface TodoListProps {
     toggleTodo: (id: number) => void;
     removeTodo: (id: number) => void;
     updateTodo: (id: number, newText: string) => void;
+    updateDate: (id: number, newDate: string) => void;
 }
 
 const TodoList = ({
     toggleTodo,
     removeTodo,
     updateTodo,
+    updateDate,
     todos,
 }: TodoListProps) => {
     return (
@@ -24,6 +26,7 @@ const TodoList = ({
                         toggleTodo={toggleTodo}
                         removeTodo={removeTodo}
                         updateTodo={updateTodo}
+                        updateDate={updateDate}
                         key={todo.id}
                         todo={todo}
                         done={todo.done}

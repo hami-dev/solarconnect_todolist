@@ -1,0 +1,18 @@
+.edit-date {
+    display: flex;
+}
+
+.edit-date .ant-picker {
+    cursor: pointer;
+    padding: 0;
+}
+
+.edit-date .ant-picker-input > input {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+    display: none;
+}
+
+.edit-date .ant-picker-suffix svg {
+    width: 20px;
+}

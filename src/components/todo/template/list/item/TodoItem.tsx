@@ -4,7 +4,7 @@ import { Itodo } from "components/todo/TodoService";
 
 import { InsertForm, Input } from "../../create/TodoCreate";
 
-import { Modal } from "antd";
+import { Modal, DatePicker } from "antd";
 import {
     ExclamationCircleOutlined,
     CheckOutlined,
@@ -12,11 +12,13 @@ import {
     EditOutlined,
 } from "@ant-design/icons";
 import styled, { css } from "styled-components";
+import "../../../../../styles/editDatePicker.css";
 
 interface TodoItemProps {
     toggleTodo: (id: number) => void;
     removeTodo: (id: number) => void;
     updateTodo: (id: number, newText: string) => void;
+    updateDate: (id: number, newDate: string) => void;
     done: boolean;
     todo: Itodo;
 }
@@ -25,6 +27,7 @@ const TodoItem = ({
     toggleTodo,
     removeTodo,
     updateTodo,
+    updateDate,
     todo,
     done,
 }: TodoItemProps) => {
@@ -52,6 +55,10 @@ const TodoItem = ({
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
+    };
+
+    const handleDateChange = (date, dateString) => {
+        updateDate(todo.id, dateString);
     };
 
     const checkBeforeRemove = () => {
@@ -89,8 +96,19 @@ const TodoItem = ({
                 <Text done={done}>{todo.text}</Text>
             )}
             <Text2 done={done}>
-                {todo.limit !== "" && (done ? "deadline : " : "⏰deadline : ")}
-                {todo.limit}
+                {todo.limit !== "" &&
+                    (done ? (
+                        <>deadline : {todo.limit}</>
+                    ) : (
+                        <div className="edit-date">
+                            <DatePicker
+                                bordered={false}
+                                onChange={handleDateChange}
+                                allowClear={false}
+                            />
+                            deadline : {todo.limit}
+                        </div>
+                    ))}
             </Text2>
 
             <Edit done={done} onClick={handleEdit}>
@@ -179,9 +197,10 @@ const Text2 = styled(Text)<{ done: boolean }>`
     flex: 1;
     font-size: 14px;
     text-align: right;
-    padding-right: 1rem;
     color: #a1c0b1;
-    min-width: 184px;
+    min-width: 180px;
+    max-width: fit-content;
+    padding-right: 25px;
     ${(props) =>
         props.done &&
         css`
