@@ -1,21 +1,36 @@
-import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
 
 import { Itodo } from "components/todo/TodoService";
-import React from "react";
-import { Modal } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
 
+import { InsertForm, Input } from "../../create/TodoCreate";
+
+import { Modal } from "antd";
+import {
+    ExclamationCircleOutlined,
+    CheckOutlined,
+    DeleteOutlined,
+    EditOutlined,
+} from "@ant-design/icons";
 import styled, { css } from "styled-components";
 
 interface TodoItemProps {
     toggleTodo: (id: number) => void;
     removeTodo: (id: number) => void;
+    updateTodo: (id: number, newText: string) => void;
     done: boolean;
     todo: Itodo;
 }
 
-const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
+const TodoItem = ({
+    toggleTodo,
+    removeTodo,
+    updateTodo,
+    todo,
+    done,
+}: TodoItemProps) => {
     const { confirm } = Modal;
+    const [edit, setEdit] = useState(false);
+    const [value, setValue] = useState("");
 
     const handleToggle = () => {
         toggleTodo(todo.id);
@@ -23,6 +38,20 @@ const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
 
     const handleRemove = () => {
         checkBeforeRemove();
+    };
+
+    const handleEdit = () => {
+        setEdit(!edit);
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // 새로고침 방지
+        updateTodo(todo.id, value);
+        setEdit(false);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
     };
 
     const checkBeforeRemove = () => {
@@ -47,11 +76,26 @@ const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
             <CheckCircle done={done} onClick={handleToggle}>
                 {done && <CheckOutlined />}
             </CheckCircle>
-            <Text done={done}>{todo.text}</Text>
+            {edit ? (
+                <InsertForm2 onSubmit={handleSubmit}>
+                    <Input2
+                        autoFocus
+                        placeholder={todo.text}
+                        onChange={handleChange}
+                        value={value}
+                    />
+                </InsertForm2>
+            ) : (
+                <Text done={done}>{todo.text}</Text>
+            )}
             <Text2 done={done}>
                 {todo.limit !== "" && (done ? "deadline : " : "⏰deadline : ")}
                 {todo.limit}
             </Text2>
+
+            <Edit done={done} onClick={handleEdit}>
+                {!done && <EditOutlined />}
+            </Edit>
             <Remove onClick={handleRemove}>
                 <DeleteOutlined />
             </Remove>
@@ -59,19 +103,36 @@ const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
     );
 };
 
+const InsertForm2 = styled(InsertForm)`
+    width: 80%;
+    padding: 0;
+`;
+const Input2 = styled(Input)`
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    padding: 0 10px;
+`;
+
 const Remove = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     color: #119955;
     font-size: 16px;
+    cursor: pointer;
+`;
+
+const Edit = styled(Remove)`
+    color: #a9edcb;
+    margin-right: 0.5rem;
 `;
 
 const TodoItemBlock = styled.div`
     display: flex;
     align-items: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     &:hover {
         ${Remove} {
             display: initial;
@@ -101,6 +162,7 @@ const CheckCircle = styled.div<{ done: boolean }>`
 const Text = styled.div<{ done: boolean }>`
     flex: 2;
     font-size: 16px;
+    line-height: 35px;
     color: #119955;
     ${(props) =>
         props.done &&
@@ -121,6 +183,7 @@ const Text2 = styled(Text)<{ done: boolean }>`
         css`
             color: #ced4da;
             text-decoration: line-through;
+            margin-right: 1rem;
         `}
 `;
 

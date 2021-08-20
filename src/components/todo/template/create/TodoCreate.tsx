@@ -108,7 +108,7 @@ const InsertFormPositioner = styled.div`
     border-bottom: 1px solid #eeeeee;
 `;
 
-const InsertForm = styled.form`
+export const InsertForm = styled.form`
     display: flex;
     align-items: center;
     background: #eeeeee;
@@ -118,7 +118,7 @@ const InsertForm = styled.form`
     padding-bottom: 36px;
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
     padding: 12px;
     border: 1px solid #dddddd;
     width: 90%;
