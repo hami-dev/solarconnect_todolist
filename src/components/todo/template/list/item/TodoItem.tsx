@@ -2,6 +2,9 @@ import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import { Itodo } from "components/todo/TodoService";
 import React from "react";
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+
 import styled, { css } from "styled-components";
 
 interface TodoItemProps {
@@ -12,14 +15,31 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo, done }: TodoItemProps) => {
+    const { confirm } = Modal;
+
     const handleToggle = () => {
-        //todo sth
         toggleTodo(todo.id);
     };
 
     const handleRemove = () => {
-        //todo sth
-        removeTodo(todo.id);
+        checkBeforeRemove();
+    };
+
+    const checkBeforeRemove = () => {
+        confirm({
+            title: "정말 지우시겠어요?",
+            icon: <ExclamationCircleOutlined />,
+            content: "삭제하면 되돌릴 수 없습니다!",
+            okText: "삭제할래요",
+            okType: "danger",
+            cancelText: "취소",
+            onOk() {
+                removeTodo(todo.id);
+            },
+            onCancel() {
+                //
+            },
+        });
     };
 
     return (
