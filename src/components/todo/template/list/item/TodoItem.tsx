@@ -104,7 +104,7 @@ const TodoItem = ({
 };
 
 const InsertForm2 = styled(InsertForm)`
-    width: 80%;
+    width: 60%;
     padding: 0;
 `;
 const Input2 = styled(Input)`
