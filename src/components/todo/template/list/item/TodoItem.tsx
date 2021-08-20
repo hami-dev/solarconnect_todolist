@@ -133,6 +133,7 @@ const TodoItemBlock = styled.div`
     align-items: center;
     padding-top: 6px;
     padding-bottom: 6px;
+    border-bottom: 1px solid #dce6d296;
     &:hover {
         ${Remove} {
             display: initial;
@@ -164,6 +165,8 @@ const Text = styled.div<{ done: boolean }>`
     font-size: 16px;
     line-height: 35px;
     color: #119955;
+    max-width: 55%;
+    word-break: break-all;
     ${(props) =>
         props.done &&
         css`
@@ -178,6 +181,7 @@ const Text2 = styled(Text)<{ done: boolean }>`
     text-align: right;
     padding-right: 1rem;
     color: #a1c0b1;
+    min-width: 184px;
     ${(props) =>
         props.done &&
         css`
