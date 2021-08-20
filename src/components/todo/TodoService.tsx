@@ -14,7 +14,6 @@ export const useTodo = () => {
     let nextIdState = 0;
 
     useEffect(() => {
-        saveData();
         loadData();
     }, []);
 
@@ -61,10 +60,12 @@ export const useTodo = () => {
         );
     };
 
+    // const loadInitialData = () => {};
+
     const loadData = () => {
         let data = localStorage.getItem("todos");
-        if (data === undefined) data = "";
-        initialTodos = JSON.parse(data!);
+        if (data === null) data = "[]";
+        initialTodos = JSON.parse(data);
         if (initialTodos && initialTodos.length >= 1) {
             incrementNextId();
         }
