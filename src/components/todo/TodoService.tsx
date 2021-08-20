@@ -60,8 +60,6 @@ export const useTodo = () => {
         );
     };
 
-    // const loadInitialData = () => {};
-
     const loadData = () => {
         let data = localStorage.getItem("todos");
         if (data === null) data = "[]";
