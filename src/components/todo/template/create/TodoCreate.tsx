@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Space, Modal, Button } from "antd";
 import "../../../../styles/datepicker.css";
 
 interface TodoCreateProps {
@@ -27,6 +27,11 @@ const TodoCreate = ({
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 새로고침 방지
 
+        if (checkBlank()) {
+            makeWarning();
+            return;
+        }
+
         createTodo({
             id: nextId,
             text: value,
@@ -39,10 +44,20 @@ const TodoCreate = ({
         setOpen(false); // open 닫기
     };
 
+    const checkBlank = () => {
+        const flag = value === "" ? true : false;
+        return flag;
+    };
+
     const handleDate = (date, dateString) => {
-        console.log(date);
-        console.log(dateString);
         setDate(dateString);
+    };
+
+    const makeWarning = () => {
+        Modal.warning({
+            title: "내용을 입력해주세요!",
+            content: "빈 내용은 입력할 수 없습니다📃",
+        });
     };
 
     return (
@@ -56,7 +71,11 @@ const TodoCreate = ({
                         value={value}
                     />
                     <Space direction="vertical">
-                        <DatePicker bordered={false} onChange={handleDate} />
+                        <DatePicker
+                            bordered={false}
+                            onChange={handleDate}
+                            inputReadOnly
+                        />
                     </Space>
                     <CircleButton onClick={handleToggle} open={open}>
                         <PlusCircleOutlined />
