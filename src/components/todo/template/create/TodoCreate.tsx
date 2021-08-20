@@ -3,9 +3,14 @@ import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
 import { DatePicker, Space, Modal } from "antd";
-import moment from "moment";
 import "../../../../styles/datepicker.css";
 import { CheckDate, GetNowDateString } from "../../../common/CheckDate";
+import {
+    INPUT_BLANK,
+    INPUT_CONTENTS,
+    DATE_BEFORE_TODAY,
+    DATE_CONTENTS,
+} from "../../../../Constant";
 
 interface TodoCreateProps {
     nextId: number;
@@ -13,16 +18,10 @@ interface TodoCreateProps {
     incrementNextId: () => void;
 }
 
-const TodoCreate = ({
-    nextId,
-    createTodo,
-    incrementNextId,
-}: TodoCreateProps) => {
-    const [open, setOpen] = useState(false);
+const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
     const [value, setValue] = useState("");
     const [date, setDate] = useState("");
 
-    const handleToggle = () => setOpen(!open);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         setValue(e.target.value);
 
@@ -30,10 +29,7 @@ const TodoCreate = ({
         e.preventDefault(); // 새로고침 방지
 
         if (checkBlank()) {
-            makeWarning(
-                "빈칸은 입력하실 수 없습니다!",
-                "내용을 꼭 적어주세요."
-            );
+            makeWarning(INPUT_BLANK, INPUT_CONTENTS);
             return;
         }
 
@@ -43,10 +39,7 @@ const TodoCreate = ({
             done: false,
             limit: date,
         });
-        incrementNextId(); // nextId 하나 증가
-
         setValue(""); // input 초기화
-        setOpen(false); // open 닫기
     };
 
     const checkBlank = () => {
@@ -56,10 +49,7 @@ const TodoCreate = ({
 
     const handleDate = (date, dateString) => {
         if (CheckDate(dateString)) {
-            makeWarning(
-                "이미 지난 날짜에요!",
-                "지난 날짜를 선택 할 경우 자동으로 오늘 날짜로 저장됩니다."
-            );
+            makeWarning(DATE_BEFORE_TODAY, DATE_CONTENTS);
             const today = GetNowDateString();
             console.log(today);
             setDate(today);
@@ -92,7 +82,7 @@ const TodoCreate = ({
                             inputReadOnly
                         />
                     </Space>
-                    <CircleButton onClick={handleToggle} open={open}>
+                    <CircleButton>
                         <PlusCircleOutlined />
                     </CircleButton>
                 </InsertForm>
@@ -101,7 +91,7 @@ const TodoCreate = ({
     );
 };
 
-const CircleButton = styled.button<{ open: boolean }>`
+const CircleButton = styled.button`
     background: #33bb77;
     width: 40px;
     height: 40px;

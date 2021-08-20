@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { Itodo } from "components/todo/TodoService";
-
 import { InsertForm, Input } from "../../create/TodoCreate";
 
 import { Modal, DatePicker } from "antd";
@@ -47,14 +46,14 @@ const TodoItem = ({
         setEdit(!edit);
     };
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    };
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 새로고침 방지
         updateTodo(todo.id, value);
         setEdit(false);
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
     };
 
     const handleDateChange = (date, dateString) => {
@@ -71,9 +70,6 @@ const TodoItem = ({
             cancelText: "취소",
             onOk() {
                 removeTodo(todo.id);
-            },
-            onCancel() {
-                //
             },
         });
     };
@@ -95,7 +91,7 @@ const TodoItem = ({
             ) : (
                 <Text done={done}>{todo.text}</Text>
             )}
-            <Text2 done={done}>
+            <Limit done={done}>
                 {todo.limit !== "" &&
                     (done ? (
                         <>deadline : {todo.limit}</>
@@ -109,7 +105,7 @@ const TodoItem = ({
                             deadline : {todo.limit}
                         </div>
                     ))}
-            </Text2>
+            </Limit>
 
             <Edit done={done} onClick={handleEdit}>
                 {!done && <EditOutlined />}
@@ -193,7 +189,7 @@ const Text = styled.div<{ done: boolean }>`
         `}
 `;
 
-const Text2 = styled(Text)<{ done: boolean }>`
+const Limit = styled(Text)<{ done: boolean }>`
     flex: 1;
     font-size: 14px;
     text-align: right;
