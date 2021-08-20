@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
 import { DatePicker, Space, Modal } from "antd";
+import moment from "moment";
 import "../../../../styles/datepicker.css";
+import { CheckDate, GetNowDateString } from "../../../common/CheckDate";
 
 interface TodoCreateProps {
     nextId: number;
@@ -28,7 +30,10 @@ const TodoCreate = ({
         e.preventDefault(); // 새로고침 방지
 
         if (checkBlank()) {
-            makeWarning();
+            makeWarning(
+                "빈칸은 입력하실 수 없습니다!",
+                "내용을 꼭 적어주세요."
+            );
             return;
         }
 
@@ -50,13 +55,23 @@ const TodoCreate = ({
     };
 
     const handleDate = (date, dateString) => {
+        if (CheckDate(dateString)) {
+            makeWarning(
+                "이미 지난 날짜에요!",
+                "지난 날짜를 선택 할 경우 자동으로 오늘 날짜로 저장됩니다."
+            );
+            const today = GetNowDateString();
+            console.log(today);
+            setDate(today);
+            return;
+        }
         setDate(dateString);
     };
 
-    const makeWarning = () => {
+    const makeWarning = (title, content) => {
         Modal.warning({
-            title: "내용을 입력해주세요!",
-            content: "빈 내용은 입력할 수 없습니다📃",
+            title: title,
+            content: content,
         });
     };
 
