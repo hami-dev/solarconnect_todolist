@@ -40,6 +40,10 @@ export const useTodo = () => {
         );
     };
 
+    const removeAll = () => {
+        setTodoState([]);
+    };
+
     const updateTodo = (id: number, newText: string) => {
         setTodoState((prevState) =>
             prevState.map((todo: Itodo) =>
@@ -98,5 +102,6 @@ export const useTodo = () => {
         updateTodo,
         updateDate,
         createTodo,
+        removeAll,
     };
 };
