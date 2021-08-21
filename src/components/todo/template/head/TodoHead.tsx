@@ -27,16 +27,16 @@ const TodoHead = () => {
     function getNowTime() {
         const date = new Date();
         let hour = date.getHours();
-        let min = date.getMinutes();
-        let sec = date.getSeconds();
+        const min = date.getMinutes();
+        const sec = date.getSeconds();
         const ampm = hour <= 12 ? "am" : "pm";
 
         hour = hour % 12;
         hour = hour ? hour : 12;
-        min = min < 10 ? "0" + min : min;
-        sec = sec < 10 ? "0" + sec : sec;
+        const minstring = min < 10 ? "0" + min : min;
+        const secString = sec < 10 ? "0" + sec : sec;
 
-        return `${ampm} ${hour} : ${min} : ${sec}`;
+        return `${ampm} ${hour} : ${minstring} : ${secString}`;
     }
 
     function setNowTime() {

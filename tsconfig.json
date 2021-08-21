@@ -15,5 +15,7 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react"
-    }
+    },
+    "include": ["src", "src/**/*.ts", "tests/**/*.ts"],
+    "exclude": ["dist", "node_modules", ".vscode"]
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../../todo/TodoService";
 import { InsertForm, Input } from "../../create/TodoCreate";
 
 import { Modal, DatePicker } from "antd";
@@ -63,7 +63,7 @@ const TodoItem = ({
         setEdit(false);
     };
 
-    const handleDateChange = (date, dateString) => {
+    const handleDateChange = (date: any, dateString: string) => {
         updateDate(todo.id, dateString);
     };
 
@@ -113,9 +113,7 @@ const TodoItem = ({
                         </div>
                     ))}
             </Limit>
-            <Edit done={done} onClick={handleEdit}>
-                {!done && <EditOutlined />}
-            </Edit>
+            <Edit onClick={handleEdit}>{!done && <EditOutlined />}</Edit>
             <Remove onClick={handleRemove}>
                 <DeleteOutlined />
             </Remove>

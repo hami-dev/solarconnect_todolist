@@ -1,3 +1,4 @@
+import React from "react";
 import { useTodo } from "./TodoService";
 import TodoTemplate from "./template/TodoTemplate";
 import TodoHead from "./template/head/TodoHead";
@@ -19,24 +20,22 @@ const TodoContainer = () => {
     } = useTodo();
 
     return (
-        <>
-            <TodoTemplate>
-                <TodoHead />
-                <TodoCreate
-                    nextId={nextIdState}
-                    createTodo={createTodo}
-                    incrementNextId={incrementNextId}
-                />
-                <TodoList
-                    toggleTodo={toggleTodo}
-                    removeTodo={removeTodo}
-                    updateTodo={updateTodo}
-                    updateDate={updateDate}
-                    todos={todoState}
-                />
-                <TodoFooter todos={todoState} removeAll={removeAll} />
-            </TodoTemplate>
-        </>
+        <TodoTemplate>
+            <TodoHead />
+            <TodoCreate
+                nextId={nextIdState}
+                createTodo={createTodo}
+                incrementNextId={incrementNextId}
+            />
+            <TodoList
+                toggleTodo={toggleTodo}
+                removeTodo={removeTodo}
+                updateTodo={updateTodo}
+                updateDate={updateDate}
+                todos={todoState}
+            />
+            <TodoFooter todos={todoState} removeAll={removeAll} />
+        </TodoTemplate>
     );
 };
 

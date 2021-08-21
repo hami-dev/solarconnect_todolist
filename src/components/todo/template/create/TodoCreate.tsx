@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../todo/TodoService";
 import { CheckDate, GetNowDateString } from "../../../common/CheckDate";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -50,7 +50,7 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
         return flag;
     };
 
-    const handleDate = (date, dateString) => {
+    const handleDate = (date: any, dateString: string) => {
         if (CheckDate(dateString)) {
             makeWarning(DATE_BEFORE_TODAY, DATE_CONTENTS);
             const today = GetNowDateString();
@@ -61,7 +61,7 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
         setDate(dateString);
     };
 
-    const makeWarning = (title, content) => {
+    const makeWarning = (title: string, content: string) => {
         Modal.warning({
             title: title,
             content: content,

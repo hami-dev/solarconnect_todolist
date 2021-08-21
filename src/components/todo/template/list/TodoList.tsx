@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../todo/TodoService";
+
 import TodoItem from "./item/TodoItem";
 import styled from "styled-components";
 

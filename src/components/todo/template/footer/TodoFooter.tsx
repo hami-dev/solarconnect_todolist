@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../todo/TodoService";
 import { Remove } from "../list/item/TodoItem";
 
 import { Modal, message } from "antd";

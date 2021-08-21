@@ -1,18 +1,18 @@
-export function CheckDate(limit) {
+export function CheckDate(limit: string) {
     const { yyyy, mm, dd } = GetNowDate();
     const limitYear = limit.substring(0, 4);
     const limitMonth = limit.substring(5, 7);
     const limitDay = limit.substring(8, 10);
 
-    if (limitYear < yyyy) {
+    if (parseInt(limitYear, 10) < yyyy) {
         return true;
     }
 
-    if (limitMonth < mm) {
+    if (parseInt(limitMonth, 10) < mm) {
         return true;
     }
 
-    if (limitDay < dd) {
+    if (parseInt(limitDay, 10) < dd) {
         return true;
     }
 
