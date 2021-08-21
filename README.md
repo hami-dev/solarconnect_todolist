@@ -1,8 +1,9 @@
+
 # [Assignment 7] 솔라커넥트 #1
 
-## Project Link
+## 💗Project Link
 
-🔗 배포 주소
+🔗 배포 주소 | <https://herin-solarconnect-todolist.netlify.app/>
 
 <br>
 
@@ -62,5 +63,11 @@ $ npm run start
 <br>
 
 ## 🎨Preview
+<div style={display: flex;}>
+   
+<img src="https://user-images.githubusercontent.com/60386993/130317815-a6a24be8-23c8-4d8a-800d-25d78c68c7e0.gif" alt="drawing" width="600"/>
+<img src="https://user-images.githubusercontent.com/60386993/130317829-0c9d2cda-25c9-4cde-a891-af08078e34db.gif" alt="drawing" width="600"/>
+<img src="https://user-images.githubusercontent.com/60386993/130317831-a598c074-1cbb-41db-af85-5f7bd8625742.gif" alt="drawing" width="600"/>
 
-![솔라커넥트]()
+</div>
+
