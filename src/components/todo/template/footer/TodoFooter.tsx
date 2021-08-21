@@ -4,8 +4,7 @@ import { Itodo } from "../../../todo/TodoService";
 import { Remove } from "../list/item/TodoItem";
 
 import { Modal, message } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
 import {
