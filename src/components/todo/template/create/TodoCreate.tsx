@@ -54,7 +54,6 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
         if (CheckDate(dateString)) {
             makeWarning(DATE_BEFORE_TODAY, DATE_CONTENTS);
             const today = GetNowDateString();
-            console.log(today);
             setDate(today);
             return;
         }

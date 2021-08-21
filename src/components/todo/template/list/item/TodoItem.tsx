@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Itodo } from "../../../../todo/TodoService";
 import { InsertForm, Input } from "../../create/TodoCreate";
+import { CheckDate, GetNowDateString } from "../../../../common/CheckDate";
 
 import { Modal, DatePicker } from "antd";
 import {
@@ -18,6 +19,8 @@ import {
     REMOVE_CONTENT,
     REMOVE_OK_BUTTON,
     REMOVE_CANCEL_BUTTON,
+    DATE_BEFORE_TODAY,
+    DATE_CONTENTS,
 } from "../../../../../Constant";
 
 interface TodoItemProps {
@@ -64,7 +67,20 @@ const TodoItem = ({
     };
 
     const handleDateChange = (date: any, dateString: string) => {
+        if (CheckDate(dateString)) {
+            makeWarning(DATE_BEFORE_TODAY, DATE_CONTENTS);
+            const today = GetNowDateString();
+            updateDate(todo.id, today);
+            return;
+        }
         updateDate(todo.id, dateString);
+    };
+
+    const makeWarning = (title: string, content: string) => {
+        Modal.warning({
+            title: title,
+            content: content,
+        });
     };
 
     const checkBeforeRemove = () => {
