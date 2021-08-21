@@ -215,7 +215,7 @@ const Limit = styled(Text)<{ done: boolean }>`
     font-size: 14px;
     text-align: right;
     color: #a1c0b1;
-    min-width: 180px;
+    min-width: 183px;
     max-width: fit-content;
     padding-right: 25px;
     ${(props) =>
