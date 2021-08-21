@@ -1,10 +1,13 @@
-import { Itodo } from "components/todo/TodoService";
 import React from "react";
-import { Modal, message } from "antd";
-import styled from "styled-components";
+
+import { Itodo } from "components/todo/TodoService";
 import { Remove } from "../list/item/TodoItem";
+
+import { Modal, message } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import styled from "styled-components";
+
 import {
     REMOVE_ALL_TITLE,
     REMOVE_CONTENT,
@@ -21,10 +24,6 @@ interface HooksTodoHeadProps {
 const Todofooter = ({ todos, removeAll }: HooksTodoHeadProps) => {
     const undoneTasks = todos && todos.filter((todo) => !todo.done);
     const { confirm } = Modal;
-
-    // const makeErrorMessage = () => {
-
-    // }
 
     const handleRemoveAll = () => {
         undoneTasks.length !== 0

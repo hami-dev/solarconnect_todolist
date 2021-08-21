@@ -12,12 +12,14 @@ import {
 } from "@ant-design/icons";
 import styled, { css } from "styled-components";
 import "../../../../../styles/editDatePicker.css";
+
 import {
     REMOVE_TITLE,
     REMOVE_CONTENT,
     REMOVE_OK_BUTTON,
     REMOVE_CANCEL_BUTTON,
 } from "../../../../../Constant";
+
 interface TodoItemProps {
     toggleTodo: (id: number) => void;
     removeTodo: (id: number) => void;
@@ -111,7 +113,6 @@ const TodoItem = ({
                         </div>
                     ))}
             </Limit>
-
             <Edit done={done} onClick={handleEdit}>
                 {!done && <EditOutlined />}
             </Edit>
@@ -126,6 +127,7 @@ const InsertForm2 = styled(InsertForm)`
     width: 60%;
     padding: 0;
 `;
+
 const Input2 = styled(Input)`
     width: 100%;
     height: 35px;
