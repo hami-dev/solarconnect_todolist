@@ -1,6 +1,5 @@
 import React from "react";
 import "antd/dist/antd.css";
-import Spinner from "./components/common/Spinner";
 import TodoContainer from "./components/todo/TodoContainer";
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
         </div>
     );
 
-    return isLogged ? RenderLayout : <Spinner mask />;
+    return isLogged && RenderLayout;
 }
 
 export default App;
