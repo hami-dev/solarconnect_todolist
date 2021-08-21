@@ -12,7 +12,12 @@ import {
 } from "@ant-design/icons";
 import styled, { css } from "styled-components";
 import "../../../../../styles/editDatePicker.css";
-
+import {
+    REMOVE_TITLE,
+    REMOVE_CONTENT,
+    REMOVE_OK_BUTTON,
+    REMOVE_CANCEL_BUTTON,
+} from "../../../../../Constant";
 interface TodoItemProps {
     toggleTodo: (id: number) => void;
     removeTodo: (id: number) => void;
@@ -62,12 +67,12 @@ const TodoItem = ({
 
     const checkBeforeRemove = () => {
         confirm({
-            title: "정말 지우시겠어요?",
+            title: REMOVE_TITLE,
             icon: <ExclamationCircleOutlined />,
-            content: "삭제하면 되돌릴 수 없습니다!",
-            okText: "삭제할래요",
+            content: REMOVE_CONTENT,
+            okText: REMOVE_OK_BUTTON,
             okType: "danger",
-            cancelText: "취소",
+            cancelText: REMOVE_CANCEL_BUTTON,
             onOk() {
                 removeTodo(todo.id);
             },
@@ -128,7 +133,7 @@ const Input2 = styled(Input)`
     padding: 0 10px;
 `;
 
-const Remove = styled.div`
+export const Remove = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
